@@ -1,92 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      RapidTools | Professional Engineering Calculators & ROI Optimizers
-    </title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RapidTools | Professional Engineering & ROI Calculators</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      body {
-        background-color: #f8fafc;
-      }
-      .eng-grid {
-        background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-        background-size: 20px 20px;
-      }
+        body { background-color: #f8fafc; }
+        .eng-grid { background-image: radial-gradient(#e2e8f0 1px, transparent 1px); background-size: 20px 20px; }
     </style>
-  </head>
-  <body class="eng-grid min-h-screen font-sans">
+</head>
+<body class="eng-grid min-h-screen font-sans pb-20">
+
     <nav class="p-6 max-w-6xl mx-auto flex justify-between items-center">
-      <div class="text-2xl font-bold text-blue-700">
-        RapidTools<span class="text-slate-500">.pro</span>
-      </div>
-      <div
-        class="text-sm text-slate-500 uppercase tracking-widest font-semibold"
-      >
-        Engineering Excellence
-      </div>
+        <div class="text-2xl font-bold text-blue-700">RapidTools<span class="text-slate-500">.pro</span></div>
+        <div class="hidden md:block text-sm text-slate-500 uppercase tracking-widest font-semibold">Engineering Excellence</div>
     </nav>
 
-    <main class="max-w-4xl mx-auto mt-20 px-6 text-center">
-      <h1 class="text-5xl font-extrabold text-slate-900 mb-6">
-        Smart Tools for <span class="text-blue-600">Modern Engineers</span>
-      </h1>
-      <p class="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
-        Precision engineering calculators, ISO tolerance lookup, and industrial
-        ROI optimizers. Designed for mechanical engineers who value speed and
-        accuracy.
-      </p>
+    <header class="max-w-4xl mx-auto mt-10 mb-16 px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+            Precision Tools for <span class="text-blue-600">Modern Engineers</span>
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Professional calculators for mechanical design, ISO standards, and industrial energy optimization.
+        </p>
+    </header>
 
-      <div class="grid md:grid-cols-3 gap-6 text-left">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <div
-            class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold"
-          >
-            ISO
-          </div>
-          <h3 class="font-bold text-slate-800 mb-2">Limits & Fits</h3>
-          <p class="text-sm text-slate-500">
-            Interactive ISO 286 tolerance calculator for shafts and holes.
-            Metric & Imperial.
-          </p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <div
-            class="w-10 h-10 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 font-bold"
-          >
-            €
-          </div>
-          <h3 class="font-bold text-slate-800 mb-2">Energy ROI</h3>
-          <p class="text-sm text-slate-500">
-            Analyze efficiency gains from IE3/IE4 motor upgrades and VFD
-            installations.
-          </p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-          <div
-            class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 font-bold"
-          >
-            Air
-          </div>
-          <h3 class="font-bold text-slate-800 mb-2">Pneumatic Loss</h3>
-          <p class="text-sm text-slate-500">
-            Calculate the hidden costs of compressed air leaks in your
-            industrial system.
-          </p>
-        </div>
-      </div>
+    <main class="max-w-4xl mx-auto px-6 space-y-12">
+        
+        <section class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="mr-2 text-blue-600">⚙️</span> ISO 286 Limits & Fits
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Nominal Size (1-80 mm)</label>
+                    <input type="number" id="sizeInput" placeholder="e.g. 25" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Tolerance Class</label>
+                    <select id="classSelect" class="w-full p-3 border border-slate-300 rounded-lg bg-slate-50">
+                        <option value="H7">H7 (Hole)</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="calculateTolerances()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition duration-200 uppercase tracking-wide">
+                Calculate ISO Limits
+            </button>
 
-      <div
-        class="mt-16 inline-block bg-slate-900 text-white px-8 py-3 rounded-full font-medium animate-pulse"
-      >
-        Coming Soon 2026
-      </div>
+            <div id="tolResults" class="hidden mt-8 pt-6 border-t border-slate-100">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-blue-50 rounded-lg text-center border border-blue-100">
+                        <span class="block text-xs uppercase text-blue-600 font-bold mb-1">Upper Limit</span>
+                        <span id="upperLimit" class="text-2xl font-mono font-bold text-slate-800">0.000</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg text-center border border-slate-200">
+                        <span class="block text-xs uppercase text-slate-500 font-bold mb-1">Lower Limit</span>
+                        <span id="lowerLimit" class="text-2xl font-mono font-bold text-slate-800">0.000</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="mr-2 text-green-600">⚡</span> Motor Energy Savings ROI
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Motor Power (kW)</label>
+                    <select id="motorPower" class="w-full p-3 border border-slate-300 rounded-lg">
+                        <option value="0.75">0.75 kW</option>
+                        <option value="1.5">1.5 kW</option>
+                        <option value="4.0">4.0 kW</option>
+                        <option value="7.5">7.5 kW</option>
+                        <option value="15.0" selected>15.0 kW</option>
+                        <option value="30.0">30.0 kW</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Running Hours / Year</label>
+                    <input type="number" id="runHours" value="6000" class="w-full p-3 border border-slate-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Current Class (Old)</label>
+                    <select id="oldClass" class="w-full p-3 border border-slate-300 rounded-lg">
+                        <option value="IE1">IE1 Standard</option>
+                        <option value="IE2">IE2 High</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 font-semibold">Upgrade To (New)</label>
+                    <select id="newClass" class="w-full p-3 border border-slate-300 rounded-lg">
+                        <option value="IE3">IE3 Premium</option>
+                        <option value="IE4">IE4 Super-Premium</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-green-800 mb-2 font-bold uppercase tracking-tight">Electricity Price (€/kWh)</label>
+                <input type="number" id="elecPrice" value="0.20" step="0.01" class="w-full p-3 border-2 border-green-200 rounded-lg bg-green-50 focus:border-green-500 outline-none font-bold text-green-700">
+            </div>
+            <button onclick="calculateMotorROI()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg transition duration-200 uppercase tracking-wide">
+                Calculate Annual Savings
+            </button>
+
+            <div id="roiResult" class="hidden mt-8 p-6 bg-slate-900 text-white rounded-xl text-center shadow-inner">
+                <p class="text-slate-400 text-sm uppercase font-bold tracking-widest">Estimated Yearly Savings</p>
+                <div id="savingsDisplay" class="text-4xl md:text-5xl font-mono font-bold text-green-400 my-2">€0.00</div>
+                <p class="text-[10px] text-slate-500 italic mt-2 uppercase tracking-tight">*Calculated based on IEC 60034-30-1 standards at 100% load.</p>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="mt-32 pb-10 text-center text-slate-400 text-sm">
-      &copy; 2026 RapidTools.pro | Built for Global Engineering Standards
+    <footer class="mt-20 text-center text-slate-400 text-sm border-t border-slate-200 pt-10">
+        &copy; 2026 RapidTools.pro | Built for Global Engineering Standards
     </footer>
-  </body>
+
+    <script>
+        // ISO DATA H7
+        const dataH7 = [
+            { max: 3, upper: 10, lower: 0 }, { max: 6, upper: 12, lower: 0 },
+            { max: 10, upper: 15, lower: 0 }, { max: 18, upper: 18, lower: 0 },
+            { max: 30, upper: 21, lower: 0 }, { max: 50, upper: 25, lower: 0 },
+            { max: 80, upper: 30, lower: 0 }
+        ];
+
+        // MOTOR EFFICIENCY DATA (IE Standards)
+        const motorEfficiencyDB = {
+            "0.8": { "IE1": 0.721, "IE2": 0.796, "IE3": 0.825, "IE4": 0.857 },
+            "1.5": { "IE1": 0.772, "IE2": 0.828, "IE3": 0.853, "IE4": 0.882 },
+            "4.0": { "IE1": 0.831, "IE2": 0.866, "IE3": 0.886, "IE4": 0.911 },
+            "7.5": { "IE1": 0.860, "IE2": 0.887, "IE3": 0.904, "IE4": 0.926 },
+            "15.0": { "IE1": 0.887, "IE2": 0.906, "IE3": 0.921, "IE4": 0.939 },
+            "30.0": { "IE1": 0.907, "IE2": 0.923, "IE3": 0.936, "IE4": 0.949 }
+        };
+
+        function calculateTolerances() {
+            const size = parseFloat(document.getElementById('sizeInput').value);
+            const resDiv = document.getElementById('tolResults');
+            if (!size || size <= 0 || size > 80) { alert("Enter size between 1-80mm"); return; }
+            const range = dataH7.find(r => size <= r.max);
+            if (range) {
+                document.getElementById('upperLimit').innerText = (size + range.upper/1000).toFixed(3) + " mm";
+                document.getElementById('lowerLimit').innerText = (size + range.lower/1000).toFixed(3) + " mm";
+                resDiv.classList.remove('hidden');
+            }
+        }
+
+        function calculateMotorROI() {
+            const p = parseFloat(document.getElementById('motorPower').value);
+            const hours = parseFloat(document.getElementById('runHours').value);
+            const price = parseFloat(document.getElementById('elecPrice').value);
+            const oldIE = document.getElementById('oldClass').value;
+            const newIE = document.getElementById('newClass').value;
+            const oldEff = motorEfficiencyDB[p.toFixed(1)][oldIE];
+            const newEff = motorEfficiencyDB[p.toFixed(1)][newIE];
+            if (oldEff && newEff) {
+                const savings = (p * hours * price) * ((1/oldEff) - (1/newEff));
+                document.getElementById('savingsDisplay').innerText = "€" + savings.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('roiResult').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
 </html>
